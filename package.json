@@ -1,13 +1,13 @@
 {
-  "name": "clima-app",
+  "name": "weather-app",
   "version": "1.0.0",
-  "description": "",
+  "description": "Aplicación interactiva de Node que utiliza la consola para buscar la temperatura de cada ciudad del Mundo.",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Mauricio Cucco",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.24.0",

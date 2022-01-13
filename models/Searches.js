@@ -100,12 +100,9 @@ class Searches {
     }
 
     readDB() {
-        try {
-            this.record = JSON.parse(fs.readFileSync(this.dbPath, 'utf-8')).record;    
-        } catch (error) {
-            console.log('ERROR', error);
-            this.record = [];
-        }
+        if(!fs.existsSync(this.dbPath)) return;
+       
+        this.record = JSON.parse(fs.readFileSync(this.dbPath, { encoding: 'utf-8' })).record;     
     }
 }
 
