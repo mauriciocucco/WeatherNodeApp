@@ -17,12 +17,15 @@ const main = async () => {
 
                 const cityId = await citiesList(citiesArr);
 
-                if(cityId === '0') break;
+                if(cityId === '0') continue;
 
                 const selectedCity = citiesArr.find(city => city.id === cityId);
 
+                searches.saveRecord(selectedCity.name); //guardo la ciudad elegida
+
                 const weather = await searches.searchWeather(selectedCity.lat, selectedCity.lng);
 
+                console.clear();
                 console.log(`\nInformación de la ciudad:\n`.magenta);
                 console.log(`Nombre: ${(selectedCity.name).yellow}`);
                 console.log(`Latitud: ${(String(selectedCity.lat).yellow)}`);
@@ -33,9 +36,10 @@ const main = async () => {
                 console.log(`T. Máxima: ${((String(weather.temp_max) + '°C').yellow)}`);
                 break;
             case 2:
-
+                searches.capitalizedRecord.forEach((city, index) => {
+                    console.log(`${(index + 1 + '.').green} ${city}`);
+                })
                 break;
-    
             case 0:
                 break;
         }

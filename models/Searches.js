@@ -1,9 +1,22 @@
+const fs = require('fs');
 const axios = require('axios');
 
 class Searches {
-    record = ['Villa Gesell'];
+    record = [];
+    dbPath = './db/database.json';
 
-    constructor() {}
+    constructor() {
+        this.readDB(); //traigo el historial de la "db"
+    }
+
+    get capitalizedRecord() {
+        return this.record.map(city => {
+            const splittedWords = city.split(' ');
+            const capitalizedArr = splittedWords.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+            
+            return capitalizedArr.join(' ');
+        });
+    }
 
     get paramsMapbox() {
         return {
@@ -67,6 +80,31 @@ class Searches {
         } catch (error) {
             console.log('ERROR', error);
             return {};
+        }
+    }
+
+    saveRecord(city = '') {
+        const duplicated = this.record.includes(city.toLocaleLowerCase());
+
+        if(duplicated) return;
+
+        this.record.unshift(city.toLocaleLowerCase());
+
+        this.saveDB(); //guardo en la "db"
+    }
+
+    saveDB() {
+        const payload = { record: this.record };
+
+        fs.writeFileSync(this.dbPath, JSON.stringify(payload));
+    }
+
+    readDB() {
+        try {
+            this.record = JSON.parse(fs.readFileSync(this.dbPath, 'utf-8')).record;    
+        } catch (error) {
+            console.log('ERROR', error);
+            this.record = [];
         }
     }
 }

@@ -1,0 +1,1 @@
+Esta carpeta funciona como una "base de datos" en donde se guardan las tareas creadas en formato JSON.
