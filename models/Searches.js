@@ -88,6 +88,8 @@ class Searches {
 
         if(duplicated) return;
 
+        this.record = this.record.slice(0, 5);
+
         this.record.unshift(city.toLocaleLowerCase());
 
         this.saveDB(); //guardo en la "db"

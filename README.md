@@ -8,7 +8,6 @@ Utiliza las siguientes dependencias:
 - Colors
 - Inquirer
 
-
 ![](/preview.jpg)
 
 Para utilizarla se debe tener instalado Node (_https://nodejs.org/es/download/_) y escribir los siguientes comandos:
